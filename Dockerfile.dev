@@ -1,0 +1,12 @@
+FROM ghcr.io/innovation-system/on-board-rabbitmq/rabbitmq-base:3.12.13
+# FROM rabbitmq:3.12.4-management-alpine
+
+ARG RABBITMQ_PLUGINS="rabbitmq_management_agent rabbitmq_management rabbitmq_mqtt rabbitmq_web_mqtt rabbitmq_prometheus rabbitmq_web_dispatch rabbitmq_auth_backend_http rabbitmq_auth_backend_cache rabbitmq_event_exchange rabbitmq_mqtt_retained_msg_store_redis rabbitmq_stream"
+
+# #? build the plugins from source in Dockerfile?
+COPY --chown=rabbitmq:rabbitmq plugins/rabbitmq_mqtt_retained_msg_store_redis-3.12.13 /opt/rabbitmq/plugins/rabbitmq_mqtt_retained_msg_store_redis-3.12.13
+COPY --chown=rabbitmq:rabbitmq plugins/eredis-1.7.1 /opt/rabbitmq/plugins/eredis-1.7.1
+COPY --chown=rabbitmq:rabbitmq plugins/msgpack-0.8.1 /opt/rabbitmq/plugins/msgpack-0.8.1
+COPY --chown=rabbitmq:rabbitmq plugins/jsx-3.1.0 /opt/rabbitmq/plugins/jsx-3.1.0
+
+RUN rabbitmq-plugins enable --offline ${RABBITMQ_PLUGINS}

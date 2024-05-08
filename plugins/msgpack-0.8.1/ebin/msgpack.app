@@ -1,0 +1,11 @@
+{application,msgpack,
+             [{description,"MessagePack serializer/deserializer"},
+              {vsn,"0.8.1"},
+              {modules, ['msgpack','msgpack_ext','msgpack_packer','msgpack_term','msgpack_unpacker']},
+              {maintainers,["Kota Uenishi","Yuki Ito"]},
+              {licenses,["Apache"]},
+              {links,[{"Github","https://github.com/msgpack/msgpack-erlang"},
+                      {"Website","http://msgpack.org"}]},
+              {registered,[]},
+              {env,[]},
+              {applications,[kernel,stdlib]}]}.
