@@ -7,6 +7,7 @@ env:
   REGISTRY: ghcr.io
   BASE_IMAGE_NAME: ${{ github.repository }}-base
   IMAGE_NAME: ${{ github.repository }}
+  ENABLE_ARTIFACT_ATTESTATION: ${{ vars.ENABLE_ARTIFACT_ATTESTATION || 'false' }}
 
 jobs:
   docker:
@@ -50,7 +51,9 @@ jobs:
           tags: ${{ steps.meta-base.outputs.tags }}
           labels: ${{ steps.meta-base.outputs.labels }}
 
+      #  only available for paid plans
       - name: Generate artifact attestation for Base RabbitMQ Docker image
+        if: ${{ env.ENABLE_ARTIFACT_ATTESTATION == 'true' }}
         uses: actions/attest-build-provenance@v1
         with:
           subject-name: ${{ env.REGISTRY }}/${{ env.BASE_IMAGE_NAME}}
@@ -75,7 +78,9 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
+      #  only available for paid plans
       - name: Generate artifact attestation for RabbitMQ Docker image
+        if: ${{ env.ENABLE_ARTIFACT_ATTESTATION == 'true' }}
         uses: actions/attest-build-provenance@v1
         with:
           subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
