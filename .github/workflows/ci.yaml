@@ -71,7 +71,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           build-args: |
-            BASE_IMAGE_TAG=${{ env.REGISTRY }}/${{ env.BASE_IMAGE_NAME}}:${{ steps.push-base.outputs.digest }}
+            BASE_IMAGE_TAG=${{ env.REGISTRY }}/${{ env.BASE_IMAGE_NAME}}:main
           context: .
           file: Dockerfile.dev
           push: true
