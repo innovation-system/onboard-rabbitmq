@@ -1,4 +1,6 @@
-FROM ghcr.io/innovation-system/on-board-rabbitmq/rabbitmq-base:3.12.13
+ARG BASE_IMAGE_TAG=ghcr.io/innovation-system/on-board-rabbitmq-base:main
+
+FROM ${BASE_IMAGE_TAG}
 # FROM rabbitmq:3.12.4-management-alpine
 
 ARG RABBITMQ_PLUGINS="rabbitmq_management_agent rabbitmq_management rabbitmq_mqtt rabbitmq_web_mqtt rabbitmq_prometheus rabbitmq_web_dispatch rabbitmq_auth_backend_http rabbitmq_auth_backend_cache rabbitmq_event_exchange rabbitmq_mqtt_retained_msg_store_redis rabbitmq_stream"
