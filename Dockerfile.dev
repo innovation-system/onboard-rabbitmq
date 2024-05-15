@@ -1,4 +1,4 @@
-ARG BASE_IMAGE_TAG=ghcr.io/innovation-system/on-board-rabbitmq-base:main
+ARG BASE_IMAGE_TAG=ghcr.io/innovation-system/onboard-rabbitmq-base:main
 
 FROM ${BASE_IMAGE_TAG}
 # FROM rabbitmq:3.12.4-management-alpine
